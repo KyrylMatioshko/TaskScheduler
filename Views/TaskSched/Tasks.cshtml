@@ -1,0 +1,51 @@
+﻿@{
+    Layout = "_Projects";
+    var culture = ViewBag.culture;
+}
+@model IEnumerable<ProjectViewModel>
+
+<thead>
+    <tr>
+        <th>Назва</th>
+        <th>Опис</th>
+        <th>Пріоритет</th>
+        <th>Створена</th>
+        <th>Дата завершення</th>
+        <th>Час завершення</th>
+        <th>Видалити</th>
+        <th>Редагувати</th>
+    </tr>
+</thead>
+@if (ViewBag.userTasks != null)
+{
+    <tbody>
+        @foreach (var item in ViewBag.userTasks)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>@item.Priority</td>
+                <td>@item.DateCreate?.ToString("d", culture)</td>
+                <td>@item.DateEnd?.ToString("d", culture)</td>
+                <td>@item.TimeEnd?.ToString("t", culture)</td>
+                <td>
+                    <a asp-action="DeleteTask" asp-controller="TaskSched" asp-route-projectId="@ViewBag.projectId" asp-route-taskId="@item.TaskId" class="delete-task-modal">
+                        <img src="~/images/delete-project-task-butt.png" alt="Редагувати" class="project-task-img-butt">
+                    </a>
+                </td>
+                <td>
+                    <a asp-action="UpdateTask" asp-controller="TaskSched" asp-route-projectId="@ViewBag.projectId" asp-route-taskId="@item.TaskId" class="update-task-modal">
+                        <img src="~/images/project-task-edit-butt.png" alt="Редагувати" class="project-task-img-butt">
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+        <div class="task-buttons">
+        <a asp-controller="TaskSched" asp-action="AddTask" asp-route-projectId="@ViewBag.projectId" class="add-task-modal">Створити задачу</a>
+        <a asp-controller="TaskSched" asp-action="SortTasks" asp-route-projectId="@ViewBag.projectId" id="open-sort-modal">Сортувати</a>
+    </div>
+}
+
+

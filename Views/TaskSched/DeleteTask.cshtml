@@ -1,0 +1,20 @@
+﻿@{
+    Layout = null;
+}
+@model ProjectTaskViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<form method="post" asp-controller="TaskSched" asp-action="DeleteTask"
+      class="delete-task-form">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="TaskId" />
+    <input type="hidden" asp-for="ProjectId" />
+    <label>
+        <input type="checkbox" name="isConfirmed" value="true" />
+        Підтвердити видалення
+    </label>
+    <button type="submit" class="button-modal-form-confirm button-form-marg">Видалити</button>
+    <button type="button" class="btn btn-primary modal-close button-form-marg">Закрити</button>
+</form>
+
+                            

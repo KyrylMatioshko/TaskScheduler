@@ -1,0 +1,43 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    @if (ViewData["Title"] is null)
+    {
+        <title>@CompanyInfo.Name</title>
+    }
+    else
+    {
+        <title>@ViewData["Title"]</title>
+    }
+    @await Html.PartialAsync("_MetaTags")
+    @await Html.PartialAsync("_Styles")
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+
+        <!-- Header -->
+        @await Html.PartialAsync("_Header")
+
+        <!-- Main -->
+        <section class="wrapper style1">
+
+                <div id="content">
+
+                    <!-- Content -->
+                    @RenderBody()
+
+                </div>
+
+        </section>
+
+
+        <!-- Footer -->
+        @await Html.PartialAsync("_Footer")
+
+    </div>
+
+    @await Html.PartialAsync("_Scripts")
+    @RenderSection("AccountScripts", required: false)
+    @RenderSection("UserComplainScripts", required: false)
+</body>
+</html>

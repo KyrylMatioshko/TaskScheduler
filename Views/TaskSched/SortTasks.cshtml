@@ -1,0 +1,33 @@
+﻿@model TaskSortViewModel
+@{
+	Layout = null;
+}
+
+<form class="sort-tasks-form" method="PUT"  asp-controller="TaskSched" asp-action="SortTasks">
+	<input type="hidden" asp-for="ProjectId" />
+	@Html.AntiForgeryToken()
+	<div class="form-group">
+		<label asp-for="SortParams"></label>
+		<select asp-for="SortParams">
+			<option value="Name">За назваою</option>
+			<option value="CreateDate">За датою створення</option>
+			<option value="Priority">За пріоритетом</option>
+			<option value="EndDate">За датою завершення</option>
+		</select>
+		<span asp-validation-for="SortParams" class="error sort-by-error"></span>
+	</div>
+
+	<div class="form-group">
+		<label asp-for="SortDirection"></label>
+		<select asp-for="SortDirection">
+			<option value="Ascending">За зростанням</option>
+			<option value="Descending">За зменшенням</option>
+		</select>
+		<span asp-validation-for="SortDirection" class="error display-order-error"></span>
+	</div>
+
+	<div class="form-buttons">
+		<button type="submit" class="save button primary button-form-marg">Зберегти</button>
+		<button type="button" class="btn btn-primary modal-close button-form-marg">Закрити</button>
+	</div>
+</form>

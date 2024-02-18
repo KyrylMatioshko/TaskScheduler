@@ -1,0 +1,53 @@
+﻿@{
+    Layout = null; 
+}
+@model TaskViewModel 
+
+<form class="add-task-form" method="post" asp-controller="TaskSched" asp-action="AddTask" asp-route-projectId="@ViewBag.projectId">
+    <!-- Anti-forgery token -->
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger-name"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger-description"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Priority"></label>
+        <select asp-for="Priority" class="form-control">
+            <option value="Low">Низький</option>
+            <option value="Medium">Середній</option>
+            <option value="High">Високий</option>
+        </select>
+        <span asp-validation-for="Priority" class="text-danger-priority"></span>
+    </div>
+
+    <div class="form-group" hidden>
+        <label asp-for="DateCreate"></label>
+        <input asp-for="DateCreate" type="date" class="form-control" />
+        <span asp-validation-for="DateCreate" class="text-danger-dateCreate"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DateEnd"></label>
+        <input asp-for="DateEnd" type="date" class="form-control" />
+        <span asp-validation-for="DateEnd" class="text-danger-dateEnd"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TimeEnd"></label>
+        <input asp-for="TimeEnd" type="time" class="form-control" />
+        <span asp-validation-for="TimeEnd" class="text-danger-timeEnd"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary button-form-marg">Додати задачу</button>
+    <button type="button" class="btn btn-primary modal-close button-form-marg">Закрити</button>
+
+</form>

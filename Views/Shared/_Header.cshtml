@@ -1,0 +1,26 @@
+﻿<div id="header">
+    <!-- logo -->
+    <h1><a href="/Home/Index" id="logo"><em>Керуйте всіма своїми завданнями та подіями на TaskScheduler</em></a></h1>
+
+    <!-- nav -->
+    <nav id="nav">
+        <ul>
+            <li><a asp-controller="Home" asp-action="Index">Головна</a></li>
+            <li><a asp-controller="Home" asp-action="Contacts">Контакти</a></li>
+
+            @if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                <li><a asp-controller="TaskSched" asp-action="Index">Мої проєкти</a></li>
+                <li>
+                    <a asp-controller="Account" asp-action="Logout">Вийти</a>
+                </li>
+            }
+            else
+            {
+                <li><a asp-controller="Account" asp-action="Login">Увійти</a></li>
+                <li><a asp-controller="Account" asp-action="Register">Реєстрація</a> </li>   
+            }
+        </ul>
+    </nav>
+                <div class="logout-modal-window"></div>
+</div>

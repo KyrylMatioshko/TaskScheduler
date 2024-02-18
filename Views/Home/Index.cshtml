@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "Головна";
+}
+@model UserComplaintsViewModel
+<article>
+    <header>
+        <h2>Ласкаво просимо до TaskScheduler</h2>
+        <p>Ваш невід'ємний помічник у керуванні завданнями та організації часу!</p>
+    </header>
+
+    <span class="image featured"><img src="~/images/mainImg.jpg" alt=""/></span>
+
+	<div class="row gtr-200">
+		<div class="col-8 col-12-narrower">
+			<div id="content">
+
+				<!-- Content -->
+				<h2>Що ми пропонуємо:</h2>
+				<ul>
+					<li><strong>Ефективне планування:</strong> Task Scheduler допомагає вам розподілити ваш час ефективно та управляти вашими завданнями за допомогою зручного інтерфейсу.</li>
+					<li><strong>Призначте завдання на потрібний час:</strong> Визначте час виконання кожного завдання та слідкуйте за їхнім виконанням без зайвого старання.</li>
+					<li><strong>Розділення проєкта на задачі:</strong> Кожен користувач може налаштувати Task Scheduler під свої потреби – від персональних завдань до командних проектів.</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-4 col-12-narrower">
+			@if (User.Identity != null && User.Identity.IsAuthenticated)
+			{
+				<div id="sidebar">
+
+				<!-- Sidebar -->
+
+					<section>
+						<h3>Виникла проблема?</h3>
+					 
+						<form method="post" asp-controller="Home" asp-action="AddComplaint" class="add-complaint-form">
+							<!-- Anti-forgery token -->
+							@Html.AntiForgeryToken()
+					 
+							<div class="form-group">
+					 
+								<label asp-for="Name"></label>
+					 
+								<input asp-for="Name" class="form-control" />
+					 
+								<span asp-validation-for="Name" class="text-danger nameError"></span>
+					 
+							</div>
+
+							<div class="form-group">
+
+								<label asp-for="Description"></label>
+
+								<input asp-for="Description" class="form-control" />
+
+								<span asp-validation-for="Description" class="text-danger descError"></span>
+
+							</div>
+
+							<button type="submit" class="btn btn-primary button-form-marg">Відправити</button>	
+							
+						</form>
+					</section>
+				</div>
+			}
+		</div>
+	</div>
+
+	<h2>Чому обирають нас:</h2>
+				<ul>
+					<li><strong>Простота використання:</strong> Інтуїтивний та дружелюбний інтерфейс дозволяє вам швидко освоїти сервіс і почати використовувати його.</li>
+					<li><strong>Гнучкість:</strong> Task Scheduler пристосовується до вашого стилю роботи та робить управління завданнями легким та приємним.</li>
+				</ul>
+
+				<p>Почніть використовувати Task Scheduler вже сьогодні і забудьте про непотрібний стрес від управління завданнями – ваше ефективне планування починається тут!</p>
+</article>
+
+<div class="overlay" id="overlay"></div>
+<div class="modal overr-modal"></div>
+
+@section UserComplainScripts{
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+	<script src="~/js/complaints-validation.js" defer></script>
+	<script src="~/js/complain-ajax.js" defer></script>
+}

@@ -1,0 +1,29 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>@(ViewBag.Title ?? "TaskScheduler")</title>
+    @await Html.PartialAsync("_MetaTags")
+    @await Html.PartialAsync("_Styles")
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+        <!-- Header -->
+        @await Html.PartialAsync("_Header")
+
+        <!-- Main -->
+        <!-- Content -->
+        <div id="content" class="project-task-container">
+            <!-- Content -->
+
+            <header>
+                <h2>Створюйте проекти та легко керуйте ними</h2>
+                <p>Працюєте над чимось, але не впевнені чи встигните?</p>
+            </header>
+            @RenderBody()
+        </div>
+        <!-- Footer -->
+        @await Html.PartialAsync("_Footer")
+    </div>
+    @await Html.PartialAsync("_Scripts")
+</body>
+</html>

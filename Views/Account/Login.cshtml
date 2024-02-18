@@ -1,0 +1,42 @@
+﻿@model UserLoginViewModel
+@{
+    ViewBag.Title = "Вхід";
+}
+
+<link rel="stylesheet" href="~/css/login.css" />
+
+<h2 style="text-align: center">Увійти до TaskScheduler</h2>
+<form class="formLogin" asp-action="Login" method="post">
+@*    <h1 class="headline">Вхід</h1> *@    
+<div class="inputLog">
+        <label asp-for="Email" class="dispBlock">Email:</label>
+        <input asp-for="Email" class="dispBlock borderClass">
+        <span asp-validation-for="Email" class="error emailErrorMessage"></span>
+    </div>
+
+    <div class="inputLog">
+        <label asp-for="Password" class="dispBlock">Password:</label>
+        <input asp-for="Password" class="dispBlock borderClass">
+        <span asp-validation-for="Password" class="error passwordErrorMessage"></span>
+    </div>
+
+    <input type="submit" class="dispBlock borderClass" value="Увійти до акаунту">
+
+    <div>
+        <label asp-for="RememberMe" class="remember-lable">Запам'ятати акаунт</label>
+        <input asp-for="RememberMe" class="remember-type-checkBox">
+    </div>
+
+    <div>
+        <div style="font-size: medium">
+            Вперше на TaskScheduler?
+            <a class="to-register" asp-action="Register" asp-route-redirectUrl="@ViewBag.RedirectUrl">Приєднатися зараз</a>
+        </div>
+    </div>
+</form>
+
+@section AccountScripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="~/js/loginValidation.js"></script>
+    <script src="~/js/ajax-complaints.js" defer></script>
+}  

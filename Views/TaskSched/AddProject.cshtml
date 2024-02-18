@@ -1,0 +1,18 @@
+﻿@{
+    Layout = null;
+}
+@model ProjectViewModel
+
+<form method="post" asp-controller="TaskSched" asp-action="AddProject" class="add-project-form">
+    <!-- Anti-forgery token -->
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary button-form-marg">Додати проєкт</button>
+    <button type="button" class="btn btn-primary modal-close button-form-marg">Закрити</button>
+</form>

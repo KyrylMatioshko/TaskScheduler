@@ -1,0 +1,60 @@
+﻿@{
+    Layout = "_TaskSchedulerLayout";
+}
+@model IEnumerable<ProjectViewModel>
+
+<article class="flex">
+
+    <section class="half-container">
+
+        <section class="flex">
+            <a asp-controller="TaskSched" asp-action="AddProject" asp-route-projectId="@ViewBag.projectId" class="add-project-modal">
+                <span>Створити</span>
+            </a>
+        </section>
+
+        <div class="menu-projects">
+
+            <h2>Проєкти</h2>
+            @if (Model.Count() > 0)
+            {
+                @foreach (var item in Model.OrderByDescending(p => p.DateCreated))
+                {
+                    <p>
+                        <a asp-controller="TaskSched" asp-action="Tasks" asp-route-projectId="@item.ProjectId">@item.Name</a>
+                        <a asp-controller="TaskSched" asp-action="UpdateProject" asp-route-projectId="@item.ProjectId" class="update-project-modal">
+                            <img src="~/images/project-task-edit-butt.png" alt="Редагувати" class="project-task-img-butt">
+                        </a>
+                    </p>
+                }
+
+                <a class="menu-projects-but-del delete-project-modal" asp-controller="TaskSched" asp-action="DeleteProject" asp-route-projectId="@ViewBag.projectId">
+                    <span>Видалити обраний проєкт</span>
+                </a>
+            }
+            else
+            {
+                <p>Створіть свій перший проєкт</p>
+            }
+        </div>
+    </section>
+
+
+    <section class="half-container">
+        <div class="menu-tasks-header flex">
+
+            <table class="alt" id="taskList">
+                @RenderBody()
+            </table>
+
+            <div class="overlay" id="overlay"></div>
+            <div class="modal"></div>
+        </div>
+    </section>
+</article>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" defer></script>
+<script src="~/js/project-ajax-requests.js" defer></script>
+<script src="~/js/tasks-sort-ajax-modal.js" defer></script>
+<script src="~/js/task-ajax-request.js" defer></script>

@@ -1,0 +1,55 @@
+﻿@model UserRegistrationViewModel
+@{
+    ViewBag.Title = "Реєстрація";
+}
+
+<link rel="stylesheet" href="~/css/registration.css" />
+
+<h2 style="text-align: center">Зареєструватись на TaskScheduler</h2>
+<form class="form" asp-action="Register" method="post">
+    @*<h1 class="headline"> Реєстрація</h1>*@
+    <div>
+        <label asp-for="FirstName" class="dispBlock"></label>
+        <input asp-for="FirstName" class="borderClass">
+        <span asp-validation-for="FirstName" class="error firstNameErrorMessage"></span>
+    </div>
+
+    <div>
+        <label asp-for="LastName" class="dispBlock"></label>
+        <input asp-for="LastName" class="borderClass dispBlock">
+        <span asp-validation-for="LastName" class="error lastNameErrorMessage"></span>
+    </div>
+
+    <div>
+        <label asp-for="Email" class="dispBlock"></label>
+        <input asp-for="Email" class="borderClass dispBlock">
+        <span asp-validation-for="Email" class="error emailErrorMessage"></span>
+    </div>
+
+    <div>
+        <label asp-for="Password" class="dispBlock"></label>
+        <input asp-for="Password" class="borderClass dispBlock">
+        <span asp-validation-for="Password" class="error passwordErrorMessage"></span>
+    </div>
+
+    <div>
+        <label asp-for="PasswordConfirmed" class="dispBlock"></label>
+        <input asp-for="PasswordConfirmed" class="borderClass dispBlock">
+        <span asp-validation-for="PasswordConfirmed" class="error passwordConfirmedErrorMessage"></span>
+    </div>
+
+    <input type="submit" class="dispBlock borderClass" value="Створити акаунт">
+
+    <div class="contHref">
+        <div style="font-size: medium;">
+            Вже є на TaskScheduler?
+        </div>
+        <a asp-action="Login" asp-route-redirectUrl="@ViewBag.RedirectUrl">Увійти</a>
+    </div>
+</form>
+
+@section AccountScripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="~/js/registerValidation.js"></script>
+}
+
